@@ -1,0 +1,19 @@
+{
+  "name": "todo-better-angular",
+  "version": "1.0.0",
+  "description": "Sample app for improved angular code structure",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --inline --hot"
+  },
+  "author": "Paul Heasley <paul@phdesign.com.au>",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^3.5.4",
+    "webpack-dev-server": "^2.7.1"
+  },
+  "dependencies": {
+    "angular": "^1.6.5"
+  }
+}
