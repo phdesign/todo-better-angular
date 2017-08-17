@@ -7,9 +7,9 @@ var TodoModel = function(title) {
 };
 
 TodoModel.prototype = {
-  setTitle: function(title) {
-    this.title = title.trim();
-  }
-}
+    setTitle: function(title) {
+        this.title = title.trim();
+    }
+};
 
 module.exports = TodoModel;

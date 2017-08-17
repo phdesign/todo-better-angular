@@ -9,6 +9,14 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+          emitWarning: true
+        }
+      },
       { 
         test: /\.css$/, 
         use: [
@@ -33,6 +41,7 @@ module.exports = {
   resolve: {
     alias: {
       components: srcPath + '/components/',
+      filters: srcPath + '/filters/',
       models: srcPath + '/models/',
       services: srcPath + '/services/',
       styles: srcPath + '/styles/'

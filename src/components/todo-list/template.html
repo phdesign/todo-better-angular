@@ -1,12 +1,11 @@
 <section class="todoapp">
-    <todo-header on-add-todo="addTodo"></todo-header>
-    <section class="main" ng-if="getTodos().length">
-        <!--<input class="toggle-all" type="checkbox" #toggleall [checked]="allCompleted()" (click)="setAllTo(toggleall)">-->
-        <ul class="todo-list" ng-repeat="todo in getTodos()">
-            <todo-item todo="todo"></todo-item>
-            <!--<todo-item *ngFor="let todo of getTodos()" [todo]="todo" (itemRemoved)="remove($event)" (itemModified)="update($event)"></todo-item>-->
-        </ul>
-    </section>
-    <todo-footer></todo-footer>
+  <todo-header on-add-todo="addTodo"></todo-header>
+  <section class="main" ng-if="getTodos().length">
+    <input class="toggle-all" type="checkbox" ng-checked="areAllCompleted()" ng-click="toggleAllCompleted()">
+    <ul class="todo-list" ng-repeat="todo in getTodos()">
+      <todo-item todo="todo" on-item-completed="itemCompleted" on-item-removed="itemRemoved"></todo-item>
+    </ul>
+  </section>
+  <todo-footer></todo-footer>
 </section>
 

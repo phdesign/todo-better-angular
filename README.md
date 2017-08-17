@@ -13,9 +13,12 @@ To install
 npm install
 ```
 
-To run (start a webserver and opens a browser to localhost:8080)
+To run (start a webserver running on localhost:8080)
 ```
 npm start
+
+# Or to open the browser as well
+npm start -- --open
 ```
 
 ## Incorporating ES6 / TypeScript
