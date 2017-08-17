@@ -10,10 +10,15 @@ angular
     ])
     .directive('todoList', function() {
         function link(scope, element, attrs) {
+            var todos = [];
             scope.styles = styles;
             scope.getTodos = function() {
-                return [];
+                return todos;
             };
+            scope.addTodo = function(newTodo) {
+                console.log('from todoList: ' + newTodo);
+                todos.push(newTodo);
+            }
         }
 
         return {

@@ -1,6 +1,6 @@
 <header class="{{ styles.header }}">
     <h1>Todos</h1>
-    <input class="edit {{ styles.newTodo }}" placeholder="What needs to be done?">
+    <input class="edit {{ styles.newTodo }}" placeholder="What needs to be done?" ng-model="newTodo" ng-keyup="handleKeyUp($event)">
     <!--<input class="new-todo" placeholder="What needs to be done?" [(ngModel)]="newTodo" autofocus="" (keyup.enter)="addTodo()">-->
 </header>
 

@@ -8,7 +8,12 @@ This project is based off [TodoMVC](https://github.com/tastejs/todomvc).
 
 ## Usage
 
-To run a live updating webserver, use:
+To install
+```
+npm install
+```
+
+To run (start a webserver and opens a browser to localhost:8080)
 ```
 npm start
 ```
