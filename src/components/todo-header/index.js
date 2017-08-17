@@ -15,6 +15,7 @@ angular
             scope.handleKeyUp = function(e) {
                 if (e.keyCode !== ENTER_KEY) return;
                 scope.onAddTodo(scope.newTodo);
+                scope.newTodo = '';
             }
         }
 

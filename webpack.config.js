@@ -33,6 +33,7 @@ module.exports = {
   resolve: {
     alias: {
       components: srcPath + '/components/',
+      models: srcPath + '/models/',
       services: srcPath + '/services/',
       styles: srcPath + '/styles/'
     }
