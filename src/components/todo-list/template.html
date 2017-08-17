@@ -1,9 +1,9 @@
 <section class="todoapp">
-  <todo-header on-add-todo="addTodo"></todo-header>
+  <todo-header on-add-todo="store.add"></todo-header>
   <section class="main" ng-if="getTodos().length">
-    <input class="toggle-all" type="checkbox" ng-checked="areAllCompleted()" ng-click="toggleAllCompleted()">
+    <input class="toggle-all" type="checkbox" ng-checked="store.areAllCompleted()" ng-click="store.toggleAllCompleted()">
     <ul class="todo-list" ng-repeat="todo in getTodos()">
-      <todo-item todo="todo" on-item-completed="itemCompleted" on-item-removed="itemRemoved"></todo-item>
+      <todo-item todo="todo" on-item-completed="store.toggleCompletion" on-item-removed="store.remove"></todo-item>
     </ul>
   </section>
   <todo-footer></todo-footer>

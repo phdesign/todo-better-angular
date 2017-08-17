@@ -12,10 +12,10 @@ angular
     .directive('todoItem', function() {
         function link(scope, element, attrs) {
             scope.toggleCompletion = function() {
-                scope.onItemCompleted(scope.todo);
+                scope.onItemCompleted(scope.todo.uid);
             };
             scope.remove = function() {
-                scope.onItemRemoved(scope.todo);
+                scope.onItemRemoved(scope.todo.uid);
             };
         }
 

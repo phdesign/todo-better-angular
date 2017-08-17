@@ -16,23 +16,12 @@ angular
     .directive('todoList', function(todoStore) {
         function link(scope, element, attrs) {
             scope.styles = styles;
+            scope.store = todoStore;
             scope.getTodos = function() {
                 return todoStore.todos;
             };
-            scope.areAllCompleted = function() {
-
-            };
             scope.toggleAllCompleted = function() {
 
-            };
-            scope.addTodo = function(newTodo) {
-                todoStore.add(newTodo);
-            };
-            scope.itemCompleted = function(todo) {
-                todoStore.toggleCompletion(todo.uid);
-            };
-            scope.itemRemoved = function(todo) {
-                todoStore.remove(todo.uid);
             };
         }
 

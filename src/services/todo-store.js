@@ -7,11 +7,32 @@ angular
     .factory('todoStore', function () {
         var todos = [];
 
+        /* Private functions */
+
         function indexOfUid(uid) {
             for (var i = 0; i < todos.length; i++) {
                 if (todos[i].uid === uid) return i;
             }
             return -1;
+        }
+
+        /* Public functions */
+
+        function getCompleted() {
+            return todos.filter(function(todo) {
+                return todo.completed === true;
+            });
+        }
+
+        function areAllCompleted() {
+            return todos.length === getCompleted().length;
+        }
+
+        function toggleAllCompleted() {
+            var setAllCompleted = !areAllCompleted();
+            for (var i = 0; i < todos.length; i++) {
+                todos[i].completed = setAllCompleted;
+            }
         }
 
         function toggleCompletion(uid) {
@@ -25,7 +46,7 @@ angular
         function remove(uid) {
             let index = indexOfUid(uid);
             if (index > -1)
-                this.todos.splice(index, 1);
+                todos.splice(index, 1);
         }
 
         function add(title) {
@@ -37,8 +58,11 @@ angular
 
         return {
             add: add,
+            areAllCompleted: areAllCompleted,
+            getCompleted: getCompleted,
             remove: remove,
             todos: todos,
+            toggleAllCompleted: toggleAllCompleted,
             toggleCompletion: toggleCompletion
         };
     });
