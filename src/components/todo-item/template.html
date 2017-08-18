@@ -1,7 +1,7 @@
 <li ng-class="{ completed: todo.completed, editing: editing }">
   <div class="view">
     <input class="toggle" type="checkbox" ng-click="toggleCompletion()" ng-checked="todo.completed">
-    <label ng-dblclick="edit(todo)">{{ todo.title | trim }}</label>
+    <label ng-dblclick="edit()">{{ todo.title | trim }}</label>
     <button class="destroy" ng-click="remove()"></button>
   </div>
 </li>
