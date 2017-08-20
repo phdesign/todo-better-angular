@@ -3,8 +3,10 @@ var angular = require('angular');
 var template = require('./template.html');
 var styles = require('./styles.css');
 var globalStyles = require('styles/global.css');
-var TodoModel = require('models/todo');
 require('filters/trim');
+
+var ENTER_KEY = 13;
+var ESC_KEY = 27;
 
 angular
     .module('todos.todo-item', [
@@ -12,24 +14,34 @@ angular
     ])
     .directive('todoItem', function() {
         function link(scope, element, attrs) {
-            scope.newTitle = scope.todo.title;
+            scope.editedTitle = '';
+            scope.editing = false;
 
             scope.toggleCompletion = function() {
-                scope.onItemChanged(new TodoModel({
-                    uid: scope.todo.uid,
-                    completed: !scope.todo.completed,
-                    title: scope.todo.title
-                }));
+                scope.onItemCompleted(scope.todo.uid);
             };
             scope.remove = function() {
                 scope.onItemRemoved(scope.todo.uid);
-            }
+            };
             scope.edit = function() {
-                scope.onItemChanged(new TodoModel({
+                scope.editedTitle = scope.todo.title;
+                scope.editing = true;
+            };
+            scope.stopEditing = function() {
+                scope.onItemTitleChanged({
                     uid: scope.todo.uid,
-                    completed: scope.todo.completed,
-                    title: scope.newTitle
-                }));
+                    title: scope.editedTitle
+                });
+                scope.editing = false;
+            };
+            scope.cancelEditing = function() {
+                scope.editing = false;  
+            };
+            scope.handleKeyUp = function(e) {
+                if (e.keyCode === ENTER_KEY) 
+                    scope.stopEditing();
+                if (e.keyCode === ESC_KEY)
+                    scope.cancelEditing();
             };
         }
 
@@ -39,7 +51,8 @@ angular
             scope: {
                 todo: '<',
                 onItemCompleted: '<',
-                onItemRemoved: '<'
+                onItemRemoved: '<',
+                onItemTitleChanged: '<'
             },
             link: link
         };

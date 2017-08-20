@@ -43,6 +43,12 @@ angular
             }
         }
 
+        function changeTitle(options) {
+            if (!options || !options.uid) return;
+            let index = indexOfUid(options.uid);
+            todos[index].setTitle(options.title); 
+        }
+
         function remove(uid) {
             let index = indexOfUid(uid);
             if (index > -1)
@@ -59,6 +65,7 @@ angular
         return {
             add: add,
             areAllCompleted: areAllCompleted,
+            changeTitle: changeTitle,
             getCompleted: getCompleted,
             remove: remove,
             todos: todos,

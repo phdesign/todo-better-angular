@@ -4,6 +4,8 @@
     <label ng-dblclick="edit()">{{ todo.title | trim }}</label>
     <button class="destroy" ng-click="remove()"></button>
   </div>
+
+  <input class="edit" ng-if="editing" ng-model="editedTitle" ng-keyup="handleKeyUp($event)">
 </li>
 <!--
 <li [class.completed]="todo.completed" [class.editing]="editing">
