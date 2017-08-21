@@ -2,6 +2,8 @@
 var angular = require('angular');
 var TodoModel = require('models/todo');
 
+var STORAGE_KEY = 'better-angular';
+
 function bindAll(obj) {
     for (var prop in obj) {
         if (typeof obj[prop] === 'function') {
@@ -11,7 +13,15 @@ function bindAll(obj) {
 }
 
 var TodoStore = function() {
-    this.todos = [];
+    let persistedTodos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+    this.todos = persistedTodos.map((todo) => {
+        let ret = new TodoModel(todo.title);
+        ret.completed = todo.completed;
+        ret.uid = todo.uid;
+        return ret;
+    });
+
     bindAll(this);
 };
 
@@ -43,6 +53,7 @@ TodoStore.prototype = {
         var setAllCompleted = !this.areAllCompleted();
         for (var i = 0; i < this.todos.length; i++) {
             this.todos[i].completed = setAllCompleted;
+            this.persist();
         }
     },
 
@@ -51,23 +62,31 @@ TodoStore.prototype = {
         if (index > -1) {
             var todo = this.todos[index];
             todo.completed = !todo.completed;
+            this.persist();
         }
     },
 
     changeTitle: function(options) {
         if (!options || !options.uid) return;
+
         let index = this.indexOfUid(options.uid);
-        this.todos[index].setTitle(options.title); 
+        if (index > -1) {
+            this.todos[index].setTitle(options.title); 
+            this.persist();
+        }
     },
 
     remove: function(uid) {
         let index = this.indexOfUid(uid);
-        if (index > -1)
+        if (index > -1) {
             this.todos.splice(index, 1);
+            this.persist();
+        }
     },
 
     removeCompleted: function() {
         this.todos = this.getRemaining();
+        this.persist();
     },
 
     add: function(title) {
@@ -75,6 +94,11 @@ TodoStore.prototype = {
         // but I feel that adds little value in this system for added complexity. E.g.
         // todos = todos.concat([new TodoModel(title)]);
         this.todos.push(new TodoModel(title));
+        this.persist();
+    },
+
+    persist: function() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.todos));
     }
 };
 
