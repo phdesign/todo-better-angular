@@ -15,6 +15,8 @@ angular
             restrict: 'AE',
             templateUrl: template,
             scope: {
+                filter: '<',
+                onChangeFilter: '<',
                 onRemoveCompleted: '<',
                 remainingCount: '<',
                 totalCount: '<'

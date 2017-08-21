@@ -19,8 +19,18 @@ angular
         function link(scope, element, attrs) {
             scope.styles = styles;
             scope.store = todoStore;
+            scope.filter = '';
             scope.getTodos = function() {
-                return todoStore.todos;
+                if (scope.filter == 'completed') {
+                    return todoStore.getCompleted();
+                } else if (scope.filter == 'active') {
+                    return todoStore.getRemaining();
+                } else {
+                    return todoStore.todos;
+                }
+            };
+            scope.changeFilter = function(val) {
+                scope.filter = val;
             };
         }
 

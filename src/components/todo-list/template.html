@@ -13,8 +13,10 @@
   </section>
 
   <todo-footer
+    filter="filter"
+    on-change-filter="changeFilter"
     on-remove-completed="store.removeCompleted"
     remaining-count="store.getRemaining().length"
-    total-count="getTodos().length"></todo-footer>
+    total-count="store.todos.length"></todo-footer>
 </section>
 
