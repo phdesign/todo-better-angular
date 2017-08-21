@@ -22,9 +22,6 @@ angular
             scope.getTodos = function() {
                 return todoStore.todos;
             };
-            scope.$watch(todoStore.todos, function(newValue) {
-                console.log('todos is now', newValue);
-            });
         }
 
         return {

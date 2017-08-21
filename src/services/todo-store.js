@@ -2,86 +2,82 @@
 var angular = require('angular');
 var TodoModel = require('models/todo');
 
+function bindAll(obj) {
+    for (var prop in obj) {
+        if (typeof obj[prop] === 'function') {
+            obj[prop] = obj[prop].bind(obj);
+        }
+    }
+}
+
+var TodoStore = function() {
+    this.todos = [];
+    bindAll(this);
+};
+
+TodoStore.prototype = {
+    indexOfUid: function(uid) {
+        for (var i = 0; i < this.todos.length; i++) {
+            if (this.todos[i].uid === uid) return i;
+        }
+        return -1;
+    },
+
+    getCompleted: function() {
+        return this.todos.filter(function(todo) {
+            return todo.completed === true;
+        });
+    },
+
+    getRemaining: function() {
+        return this.todos.filter(function(todo) {
+            return todo.completed === false;
+        });
+    },
+
+    areAllCompleted: function() {
+        return this.todos.length === this.getCompleted().length;
+    },
+
+    toggleAllCompleted: function() {
+        var setAllCompleted = !this.areAllCompleted();
+        for (var i = 0; i < this.todos.length; i++) {
+            this.todos[i].completed = setAllCompleted;
+        }
+    },
+
+    toggleCompletion: function(uid) {
+        let index = this.indexOfUid(uid);
+        if (index > -1) {
+            var todo = this.todos[index];
+            todo.completed = !todo.completed;
+        }
+    },
+
+    changeTitle: function(options) {
+        if (!options || !options.uid) return;
+        let index = this.indexOfUid(options.uid);
+        this.todos[index].setTitle(options.title); 
+    },
+
+    remove: function(uid) {
+        let index = this.indexOfUid(uid);
+        if (index > -1)
+            this.todos.splice(index, 1);
+    },
+
+    removeCompleted: function() {
+        this.todos = this.getRemaining();
+    },
+
+    add: function(title) {
+        // We could also get righteous here and not modify the existing collection but treat is as immutable,
+        // but I feel that adds little value in this system for added complexity. E.g.
+        // todos = todos.concat([new TodoModel(title)]);
+        this.todos.push(new TodoModel(title));
+    }
+};
+
 angular
     .module('todos.todo-store', [])
-    .factory('todoStore', function () {
-        var todos = [];
-
-        /* Private functions */
-
-        function indexOfUid(uid) {
-            for (var i = 0; i < todos.length; i++) {
-                if (todos[i].uid === uid) return i;
-            }
-            return -1;
-        }
-
-        /* Public functions */
-
-        function getCompleted() {
-            return todos.filter(function(todo) {
-                return todo.completed === true;
-            });
-        }
-
-        function getRemaining() {
-            return todos.filter(function(todo) {
-                return todo.completed === false;
-            });
-        }
-
-        function areAllCompleted() {
-            return todos.length === getCompleted().length;
-        }
-
-        function toggleAllCompleted() {
-            var setAllCompleted = !areAllCompleted();
-            for (var i = 0; i < todos.length; i++) {
-                todos[i].completed = setAllCompleted;
-            }
-        }
-
-        function toggleCompletion(uid) {
-            let index = indexOfUid(uid);
-            if (index > -1) {
-                var todo = todos[index];
-                todo.completed = !todo.completed;
-            }
-        }
-
-        function changeTitle(options) {
-            if (!options || !options.uid) return;
-            let index = indexOfUid(options.uid);
-            todos[index].setTitle(options.title); 
-        }
-
-        function remove(uid) {
-            let index = indexOfUid(uid);
-            if (index > -1)
-                todos.splice(index, 1);
-        }
-
-        function removeCompleted() {
-            todos = getRemaining();
-        }
-
-        function add(title) {
-            // We could also get righteous here and not modify the existing collection but treat is as immutable,
-            // but I feel that adds little value in this system for added complexity. E.g.
-            // todos = todos.concat([new TodoModel(title)]);
-            todos.push(new TodoModel(title));
-        }
-
-        return {
-            add: add,
-            areAllCompleted: areAllCompleted,
-            changeTitle: changeTitle,
-            getCompleted: getCompleted,
-            getRemaining: getRemaining,
-            remove: remove,
-            removeCompleted: removeCompleted,
-            todos: todos,
-            toggleAllCompleted: toggleAllCompleted,
-            toggleCompletion: toggleCompletion
-        };
-    });
+    .service('todoStore', TodoStore);
