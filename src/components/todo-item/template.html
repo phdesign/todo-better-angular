@@ -1,8 +1,8 @@
-<li ng-class="{ completed: todo.completed, editing: editing }">
-  <div class="view">
-    <input class="toggle" type="checkbox" ng-click="toggleCompletion()" ng-checked="todo.completed">
+<li class="{{ styles.todoItem }}" ng-class="{ '{{ styles.completed }}': todo.completed, '{{ styles.editing }}': editing }">
+  <div class="{{ styles.view }}">
+    <input class="{{ styles.toggle }}" type="checkbox" ng-click="toggleCompletion()" ng-checked="todo.completed">
     <label ng-dblclick="edit()">{{ todo.title | trim }}</label>
-    <button class="destroy" ng-click="remove()"></button>
+    <button class="{{ styles.destroy }}" ng-click="remove()"></button>
   </div>
 
   <input class="edit" ng-show="editing" ng-model="editedTitle" ng-blur="stopEditing()" ng-keyup="handleKeyUp($event)">

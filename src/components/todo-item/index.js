@@ -14,6 +14,7 @@ angular
     ])
     .directive('todoItem', function() {
         function link(scope, element, attrs) {
+            scope.styles = styles;
             scope.editedTitle = '';
             scope.editing = false;
 
