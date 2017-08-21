@@ -24,6 +24,12 @@ angular
             });
         }
 
+        function getRemaining() {
+            return todos.filter(function(todo) {
+                return todo.completed === false;
+            });
+        }
+
         function areAllCompleted() {
             return todos.length === getCompleted().length;
         }
@@ -55,6 +61,10 @@ angular
                 todos.splice(index, 1);
         }
 
+        function removeCompleted() {
+            todos = getRemaining();
+        }
+
         function add(title) {
             // We could also get righteous here and not modify the existing collection but treat is as immutable,
             // but I feel that adds little value in this system for added complexity. E.g.
@@ -67,7 +77,9 @@ angular
             areAllCompleted: areAllCompleted,
             changeTitle: changeTitle,
             getCompleted: getCompleted,
+            getRemaining: getRemaining,
             remove: remove,
+            removeCompleted: removeCompleted,
             todos: todos,
             toggleAllCompleted: toggleAllCompleted,
             toggleCompletion: toggleCompletion

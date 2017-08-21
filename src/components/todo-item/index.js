@@ -28,6 +28,7 @@ angular
                 scope.editing = true;
             };
             scope.stopEditing = function() {
+                if (!scope.editing) return;
                 scope.onItemTitleChanged({
                     uid: scope.todo.uid,
                     title: scope.editedTitle

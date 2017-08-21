@@ -12,6 +12,9 @@
     </ul>
   </section>
 
-  <todo-footer></todo-footer>
+  <todo-footer
+    on-remove-completed="store.removeCompleted"
+    remaining-count="store.getRemaining().length"
+    total-count="getTodos().length"></todo-footer>
 </section>
 
