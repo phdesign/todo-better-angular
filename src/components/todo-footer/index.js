@@ -4,25 +4,22 @@ var template = require('./template.html');
 var styles = require('./styles.css');
 var globalStyles = require('styles/global.css');
 
+var TodoFooterController = function() {
+    this.styles = styles;
+};
+
 angular
     .module('todos.todo-footer', [])
-    .directive('todoFooter', function() {
-        function link(scope, element, attrs) {
-            scope.styles = styles;
-        }
-
-        return {
-            restrict: 'AE',
-            templateUrl: template,
-            scope: {
-                filter: '<',
-                onChangeFilter: '<',
-                onRemoveCompleted: '<',
-                remainingCount: '<',
-                totalCount: '<'
-            },
-            link: link
-        };
+    .component('todoFooter', {
+        templateUrl: template,
+        bindings: {
+            filter: '<',
+            onChangeFilter: '<',
+            onRemoveCompleted: '<',
+            remainingCount: '<',
+            totalCount: '<'
+        },
+        controller: TodoFooterController
     });
 
 

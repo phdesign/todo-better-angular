@@ -1,15 +1,15 @@
-<footer class="{{ styles.footer }}" ng-if="totalCount > 0">
-    <span class="{{ styles.todoCount }}"><strong>{{ remainingCount }}</strong> {{ remainingCount == 1 ? 'item' : 'items' }} left</span>
-    <ul class="{{ styles.filters }}">
+<footer class="{{ $ctrl.styles.footer }}" ng-if="$ctrl.totalCount > 0">
+    <span class="{{ $ctrl.styles.todoCount }}"><strong>{{ $ctrl.remainingCount }}</strong> {{ $ctrl.remainingCount == 1 ? 'item' : 'items' }} left</span>
+    <ul class="{{ $ctrl.styles.filters }}">
         <li>
-            <a ng-click="onChangeFilter('')" ng-class="{ '{{ styles.selected }}': filter == '' }">All</a>
+            <a ng-click="$ctrl.onChangeFilter('')" ng-class="{ '{{ $ctrl.styles.selected }}': $ctrl.filter == '' }">All</a>
         </li>
         <li>
-            <a ng-click="onChangeFilter('active')" ng-class="{ '{{ styles.selected }}': filter == 'active' }">Active</a>
+            <a ng-click="$ctrl.onChangeFilter('active')" ng-class="{ '{{ $ctrl.styles.selected }}': $ctrl.filter == 'active' }">Active</a>
         </li>
         <li>
-            <a ng-click="onChangeFilter('completed')" ng-class="{ '{{ styles.selected }}': filter == 'completed' }">Completed</a>
+            <a ng-click="$ctrl.onChangeFilter('completed')" ng-class="{ '{{ $ctrl.styles.selected }}': $ctrl.filter == 'completed' }">Completed</a>
         </li>
     </ul>
-    <button class="{{ styles.clearCompleted }}" ng-if="totalCount > remainingCount" ng-click="onRemoveCompleted()">Clear completed</button>
+    <button class="{{ $ctrl.styles.clearCompleted }}" ng-if="$ctrl.totalCount > $ctrl.remainingCount" ng-click="$ctrl.onRemoveCompleted()">Clear completed</button>
 </footer>
