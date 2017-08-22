@@ -2,7 +2,6 @@
 var angular = require('angular');
 var template = require('./template.html');
 var styles = require('./styles.css');
-var globalStyles = require('styles/global.css');
 require('filters/trim');
 
 var ENTER_KEY = 13;

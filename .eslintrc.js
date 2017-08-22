@@ -14,7 +14,6 @@ module.exports = {
         "semi": ["error", "always"],
         "no-console": "off",
         "no-unused-vars": ["error", { 
-            "varsIgnorePattern": "(globalStyles|styles)", 
             "args": "none",
             "caughtErrors": "none"
         }]

@@ -2,7 +2,6 @@
 var angular = require('angular');
 var template = require('./template.html');
 var styles = require('./styles.css');
-var globalStyles = require('styles/global.css');
 
 var TodoFooterController = function() {
     this.styles = styles;

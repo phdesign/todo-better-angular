@@ -2,7 +2,7 @@
 var angular = require('angular');
 var template = require('./template.html');
 var styles = require('./styles.css');
-var globalStyles = require('styles/global.css');
+require('styles/global.css');
 // It's important to maintain the correct dependencies between components. It's easy to miss it because as long as
 // some file somewhere requires the dependent component it will be bundled, but if that dependency is dropped later
 // you'll waste time working out why your app stopped working. 
