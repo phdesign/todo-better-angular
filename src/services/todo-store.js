@@ -4,6 +4,7 @@ var TodoModel = require('models/todo');
 
 var STORAGE_KEY = 'better-angular';
 
+// Private methods
 function bindAll(obj) {
     for (var prop in obj) {
         if (typeof obj[prop] === 'function') {
@@ -12,6 +13,7 @@ function bindAll(obj) {
     }
 }
 
+// Constructor
 var TodoStore = function() {
     let persistedTodos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
@@ -25,6 +27,7 @@ var TodoStore = function() {
     bindAll(this);
 };
 
+// Public members
 TodoStore.prototype = {
     indexOfUid: function(uid) {
         for (var i = 0; i < this.todos.length; i++) {

@@ -1,5 +1,4 @@
-<!-- The ng-if here is a hack to make ng-class work. Go fix it. -->
-<li class="{{ $ctrl.styles.todoItem }}" ng-if="true" ng-class="{ '{{ $ctrl.styles.completed }}': $ctrl.todo.completed, '{{ $ctrl.styles.editing }}': $ctrl.editing }">
+<li class="{{ $ctrl.styles.todoItem }}" ng-class="{ '{{ $ctrl.styles.completed }}': $ctrl.todo.completed, '{{ $ctrl.styles.editing }}': $ctrl.editing }">
 
   <div class="{{ $ctrl.styles.view }}">
     <input class="{{ $ctrl.styles.toggle }}" type="checkbox" ng-click="$ctrl.toggleCompletion()" ng-checked="$ctrl.todo.completed">
