@@ -11,6 +11,10 @@ var globalStyles = require('styles/global.css');
 //   module dependency below ('todos.todo-list').
 require('components/todo-list');
 
+var TodoAppController = function() {
+    this.styles = styles;
+};
+
 angular
     // It's possible to use just a single module and every component extends that module, in that order of require
     // statement becomes very important but it means that whereever you declare the module has to understand all the
@@ -18,16 +22,7 @@ angular
     .module('todos.todo-app', [
         'todos.todo-list'
     ])
-    .directive('todoApp', function() {
-        function link(scope, element, attrs) {
-            scope.styles = styles;
-        }
-
-        return {
-            restrict: 'AE',
-            templateUrl: template,
-            // An empty scope is important here so we don't inherit the parent scope
-            scope: {},
-            link: link
-        };
+    .component('todoApp', {
+        templateUrl: template,
+        controller: TodoAppController
     });

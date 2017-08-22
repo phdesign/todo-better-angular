@@ -6,28 +6,26 @@ var globalStyles = require('styles/global.css');
 
 var ENTER_KEY = 13;
 
+var TodoHeaderController = function() {
+    var self = this;
+    this.styles = styles;
+    this.newTodo = '';
+
+    this.handleKeyUp = function(e) {
+        if (e.keyCode !== ENTER_KEY) return;
+        self.onAddTodo(self.newTodo);
+        self.newTodo = '';
+    };
+};
+
 angular
     .module('todos.todo-header', [])
-    .directive('todoHeader', function() {
-        function link(scope, element, attrs) {
-            scope.styles = styles;
-            scope.newTodo = '';
-
-            scope.handleKeyUp = function(e) {
-                if (e.keyCode !== ENTER_KEY) return;
-                scope.onAddTodo(scope.newTodo);
-                scope.newTodo = '';
-            };
-        }
-
-        return {
-            restrict: 'AE',
-            templateUrl: template,
-            // Any change to application state should be done via callbacks
-            scope: {
-                onAddTodo: '<'
-            },
-            link: link
-        };
+    .component('todoHeader', {
+        templateUrl: template,
+        // Any change to application state should be done via callbacks
+        bindings: {
+            onAddTodo: '<'
+        },
+        controller: TodoHeaderController
     });
 

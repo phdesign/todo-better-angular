@@ -1,11 +1,11 @@
 <!-- The ng-if here is a hack to make ng-class work. Go fix it. -->
-<li class="{{ styles.todoItem }}" ng-if="true" ng-class="{ '{{ styles.completed }}': todo.completed, '{{ styles.editing }}': editing }">
+<li class="{{ $ctrl.styles.todoItem }}" ng-if="true" ng-class="{ '{{ $ctrl.styles.completed }}': $ctrl.todo.completed, '{{ $ctrl.styles.editing }}': $ctrl.editing }">
 
-  <div class="{{ styles.view }}">
-    <input class="{{ styles.toggle }}" type="checkbox" ng-click="toggleCompletion()" ng-checked="todo.completed">
-    <label ng-dblclick="edit()">{{ todo.title | trim }}</label>
-    <button class="{{ styles.destroy }}" ng-click="remove()"></button>
+  <div class="{{ $ctrl.styles.view }}">
+    <input class="{{ $ctrl.styles.toggle }}" type="checkbox" ng-click="$ctrl.toggleCompletion()" ng-checked="$ctrl.todo.completed">
+    <label ng-dblclick="$ctrl.edit()">{{ $ctrl.todo.title | trim }}</label>
+    <button class="{{ $ctrl.styles.destroy }}" ng-click="$ctrl.remove()"></button>
   </div>
 
-  <input class="edit" ng-show="editing" ng-model="editedTitle" ng-blur="stopEditing()" ng-keyup="handleKeyUp($event)">
+  <input class="edit" ng-show="$ctrl.editing" ng-model="$ctrl.editedTitle" ng-blur="$ctrl.stopEditing()" ng-keyup="$ctrl.handleKeyUp($event)">
 </li>

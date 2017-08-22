@@ -1,10 +1,10 @@
-<header class="{{ styles.header }}">
+<header class="{{ $ctrl.styles.header }}">
   <h1>Todos</h1>
   <input
-    class="edit {{ styles.newTodo }}"
+    class="edit {{ $ctrl.styles.newTodo }}"
     placeholder="What needs to be done?"
-    ng-model="newTodo"
+    ng-model="$ctrl.newTodo"
     autofocus=""
-    ng-keyup="handleKeyUp($event)">
+    ng-keyup="$ctrl.handleKeyUp($event)">
 </header>
 

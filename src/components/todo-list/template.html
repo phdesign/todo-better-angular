@@ -1,22 +1,22 @@
-<section class="{{ styles.todoapp }}">
-  <todo-header on-add-todo="store.add"></todo-header>
+<section class="{{ $ctrl.styles.todoapp }}">
+  <todo-header on-add-todo="$ctrl.store.add"></todo-header>
 
-  <section class="{{ styles.main }}" ng-if="getTodos().length">
-    <input class="{{ styles.toggleAll }}" type="checkbox" ng-checked="store.areAllCompleted()" ng-click="store.toggleAllCompleted()">
-    <ul class="{{ styles.todoList }}" ng-repeat="todo in getTodos()">
+  <section class="{{ $ctrl.styles.main }}" ng-if="$ctrl.getTodos().length">
+    <input class="{{ $ctrl.styles.toggleAll }}" type="checkbox" ng-checked="$ctrl.store.areAllCompleted()" ng-click="$ctrl.store.toggleAllCompleted()">
+    <ul class="{{ $ctrl.styles.todoList }}" ng-repeat="todo in $ctrl.getTodos()">
       <todo-item 
         todo="todo"
-        on-item-completed="store.toggleCompletion"
-        on-item-removed="store.remove"
-        on-item-title-changed="store.changeTitle"></todo-item>
+        on-item-completed="$ctrl.store.toggleCompletion"
+        on-item-removed="$ctrl.store.remove"
+        on-item-title-changed="$ctrl.store.changeTitle"></todo-item>
     </ul>
   </section>
 
   <todo-footer
-    filter="filter"
-    on-change-filter="changeFilter"
-    on-remove-completed="store.removeCompleted"
-    remaining-count="store.getRemaining().length"
-    total-count="store.todos.length"></todo-footer>
+    filter="$ctrl.filter"
+    on-change-filter="$ctrl.changeFilter"
+    on-remove-completed="$ctrl.store.removeCompleted"
+    remaining-count="$ctrl.store.getRemaining().length"
+    total-count="$ctrl.store.todos.length"></todo-footer>
 </section>
 
