@@ -1,4 +1,6 @@
-<li class="{{ styles.todoItem }}" ng-class="{ '{{ styles.completed }}': todo.completed, '{{ styles.editing }}': editing }">
+<!-- The ng-if here is a hack to make ng-class work. Go fix it. -->
+<li class="{{ styles.todoItem }}" ng-if="true" ng-class="{ '{{ styles.completed }}': todo.completed, '{{ styles.editing }}': editing }">
+
   <div class="{{ styles.view }}">
     <input class="{{ styles.toggle }}" type="checkbox" ng-click="toggleCompletion()" ng-checked="todo.completed">
     <label ng-dblclick="edit()">{{ todo.title | trim }}</label>
