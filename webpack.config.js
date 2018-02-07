@@ -3,7 +3,7 @@ var srcPath = path.join(__dirname, '/src');
 
 module.exports = {
   entry: './src/app.js',
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   output: {
     filename: 'todos.min.js'
   },

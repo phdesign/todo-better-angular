@@ -4,16 +4,21 @@
   "description": "Sample app for improved angular code structure",
   "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha-webpack",
+    "test2": "webpack --config webpack.test2.js && mocha ./test/.webpack/tests.js",
     "start": "webpack-dev-server --inline --hot"
   },
   "author": "Paul Heasley <paul@phdesign.com.au>",
   "license": "MIT",
   "devDependencies": {
+    "angular-mocks": "^1.6.9",
+    "chai": "^4.1.2",
     "css-loader": "^0.28.4",
     "eslint": "^4.4.1",
     "eslint-loader": "^1.9.0",
     "html-loader": "^0.5.1",
+    "jsdom": "^11.6.2",
+    "mocha": "^4.1.0",
     "ngtemplate-loader": "^2.0.1",
     "style-loader": "^0.18.2",
     "webpack": "^3.5.4",
@@ -21,6 +26,8 @@
   },
   "dependencies": {
     "angular": "^1.6.5",
-    "node-uuid": "^1.4.8"
+    "mocha-webpack": "^1.0.1",
+    "node-uuid": "^1.4.8",
+    "webpack-node-externals": "^1.6.0"
   }
 }
