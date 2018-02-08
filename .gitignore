@@ -1,3 +1,15 @@
-todos.min.js
+# General
+*.log
+.DS_Store
+.tmp
+.orig
+tmp
 node_modules
+
+# Editors
+**/.idea
+.vscode
+
+# Project artifacts
+todos.min.js
 npm-debug.log
