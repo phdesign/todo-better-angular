@@ -1,14 +1,10 @@
 import { expect } from 'chai';
-//import 'angular-mocks';
-//import * as angular from 'angular';
-//var angular = require('angular/angular');
-//require('angular-mocks/angular-mocks')
-//require('angular-mocks');
-require('components/todo-item');
+import TodoItemDriver from '../drivers/todo-item-driver';
+import 'components/todo-item';
 
 describe('todo-item component', function () {
+    var component;
     var $scope;
-    var $compile;
 
     beforeEach(function() {
         angular.mock.module('todos.todo-item');
@@ -16,17 +12,14 @@ describe('todo-item component', function () {
 
     beforeEach(inject(function($rootScope, _$compile_) {
         $scope = $rootScope.$new();
-        $compile = _$compile_;
+        component = new TodoItemDriver(_$compile_);
     }));
 
-    it('should do something ', function () {
-        var element = angular.element('<todo-item todo="todo"></todo-item>');
+    it('should display the trimmed item title', function () {
         $scope.todo = {
-            title: 'test item'
+            title: '  test item '
         };
-        element = $compile(element)($scope);
-        $scope.$digest();
-        console.log(element[0].outerHTML);
-        //expect(element.
+        component.render($scope);
+        expect(component.getTitle()).to.equal('test item');
     });
 });
