@@ -23,7 +23,7 @@ window.after = global.after;
 window.mocha = true;
 
 require('angular/angular');
-require('angular-mocks/angular-mocks')
+require('angular-mocks/angular-mocks');
 
 global.angular = window.angular;
 global.inject = global.angular.mock.inject;

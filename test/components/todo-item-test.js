@@ -20,7 +20,10 @@ describe('todo-item component', function () {
     }));
 
     it('should do something ', function () {
-        var element = angular.element('<todo-item></todo-item>');
+        var element = angular.element('<todo-item todo="todo"></todo-item>');
+        $scope.todo = {
+            title: 'test item'
+        };
         element = $compile(element)($scope);
         $scope.$digest();
         console.log(element[0].outerHTML);
