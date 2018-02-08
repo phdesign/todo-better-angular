@@ -15,7 +15,12 @@ describe('todo-list component', function () {
         component = new TodoListDriver(_$compile_);
     }));
 
-    it.skip('should not have any Todos on start', function () {
+    afterEach(() => {
+        localStorage.clear();
+        localStorage.itemInsertionCallback = null;
+    });
+
+    it('should not have any Todos on start', function () {
         component.render($scope);
         expect(component.countTodos()).to.equal(0);
     });

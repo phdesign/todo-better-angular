@@ -24,9 +24,11 @@ window.mocha = true;
 
 require('angular/angular');
 require('angular-mocks/angular-mocks');
+require('mock-local-storage');
 
 global.angular = window.angular;
 global.inject = global.angular.mock.inject;
+global.localStorage = window.localStorage;
 
 function requireAll(r) { r.keys().forEach(r); }
 requireAll(require.context('./components/', true, /\.js$/));

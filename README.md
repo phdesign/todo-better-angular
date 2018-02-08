@@ -25,3 +25,17 @@ npm start -- --open
 
 Ideally we'd use ES6 (via Babel) or TypeScript here, but to related to the widest possible audience I've kept the 
 implementation to ES5 JavaScript.
+
+## Tests
+
+To run
+```
+npm test
+```
+
+To debug, first set some `debugger;` breakpoints in your code
+```
+npm run test:debug
+```
+Once the terminal is paused, open `chrome://inspect` in Google Chrome, click the 'Open dedicated DevTools for Node' link
+and click continue in the debugging tools. 
