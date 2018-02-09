@@ -1,6 +1,7 @@
 'use strict';
 
 const find = require('../helpers').find;
+const styles = require('components/todo-item/styles.css');
 
 var TodoItemDriver = function($compile) {
     this.$compile = $compile;
@@ -41,6 +42,10 @@ TodoItemDriver.prototype = {
 
     setTitle: function(text) {
         find(this.element, '.edit').scope().$ctrl.editedTitle = text;
+    },
+
+    isCompleteTickShown: function() {
+        return find(this.element, '.' + styles.toggle).prop('checked');
     }
 };
 

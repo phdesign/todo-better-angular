@@ -1,3 +1,8 @@
+const chai = require('chai');
+const sinonChai = require('sinon-chai');
+
+chai.use(sinonChai);
+
 const { JSDOM } = require('jsdom');
 const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
 const { window } = jsdom;
@@ -29,6 +34,7 @@ require('mock-local-storage');
 global.angular = window.angular;
 global.inject = global.angular.mock.inject;
 global.localStorage = window.localStorage;
+global.expect = chai.expect;
 
 function requireAll(r) { r.keys().forEach(r); }
 requireAll(require.context('./components/', true, /\.js$/));

@@ -18,9 +18,13 @@ TodoListDriver.prototype = {
         return this.element.find('li').length;
     },
 
+    clickToggleAll: function() {
+        find(this.element, '.' + styles.toggleAll).triggerHandler('click');
+    },
+
     isToggleAllChecked: function() {
         return find(this.element, '.' + styles.toggleAll).prop('checked');
     }
 };
 
-export default TodoListDriver;
+module.exports = TodoListDriver;

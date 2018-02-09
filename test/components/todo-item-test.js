@@ -1,4 +1,3 @@
-const expect = require('chai').expect;
 const sinon = require('sinon');
 const TodoItemDriver = require('../drivers/todo-item-driver');
 require('components/todo-item');
@@ -17,7 +16,8 @@ describe('todo-item component', function () {
 
         $scope.todo = {
             uid: '102c2049-4a69-49d7-9395-24189e99a141',
-            title: '  test todo '
+            title: '  test todo ',
+            completed: false
         };
         $scope.onItemTitleChanged = sinon.spy();
     }));
@@ -32,6 +32,18 @@ describe('todo-item component', function () {
         expect(component.isEditingEnabled()).to.be.false;
     });
 
+    it('should display the Todo as incomplete given its incomplete', function () {
+        $scope.todo.completed = false;
+        component.render($scope);
+        expect(component.isCompleteTickShown()).to.be.false;
+    });
+
+    it('should display the Todo as completed given its completed', function () {
+        $scope.todo.completed = true;
+        component.render($scope);
+        expect(component.isCompleteTickShown()).to.be.true;
+    });
+
     it('should change Todo when saving given title has been edited', function () {
         component.render($scope);
         component.startEditing();
@@ -41,7 +53,7 @@ describe('todo-item component', function () {
             uid: '102c2049-4a69-49d7-9395-24189e99a141',
             title: 'edited todo'
         };
-        expect($scope.onItemTitleChanged.withArgs(expected).calledOnce).to.be.true;
+        expect($scope.onItemTitleChanged).to.have.been.calledWith(expected);
     });
 
     it('should not change Todo when cancelling given title has been edited', function () {
@@ -49,6 +61,6 @@ describe('todo-item component', function () {
         component.startEditing();
         component.setTitle('edited todo');
         component.cancelEditing();
-        expect($scope.onItemTitleChanged.notCalled).to.be.true;
+        expect($scope.onItemTitleChanged).to.not.have.been.called;
     });
 });
