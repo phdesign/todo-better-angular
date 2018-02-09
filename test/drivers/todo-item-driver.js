@@ -35,6 +35,10 @@ TodoItemDriver.prototype = {
         find(this.element, '.edit').triggerHandler('blur');
     },
 
+    cancelEditing: function() {
+        find(this.element, '.edit').triggerHandler('keyup', { keyCode: 27 });
+    },
+
     setTitle: function(text) {
         find(this.element, '.edit').scope().$ctrl.editedTitle = text;
     }

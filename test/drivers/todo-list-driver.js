@@ -1,5 +1,8 @@
 'use strict';
 
+const find = require('../helpers').find;
+const styles = require('components/todo-list/styles.css');
+
 var TodoListDriver = function($compile) {
     this.$compile = $compile;
 };
@@ -13,6 +16,10 @@ TodoListDriver.prototype = {
 
     countTodos: function() {
         return this.element.find('li').length;
+    },
+
+    isToggleAllChecked: function() {
+        return find(this.element, '.' + styles.toggleAll).prop('checked');
     }
 };
 

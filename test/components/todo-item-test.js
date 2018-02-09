@@ -32,7 +32,7 @@ describe('todo-item component', function () {
         expect(component.isEditingEnabled()).to.be.false;
     });
 
-    it('should change Todo when editing saved', function () {
+    it('should change Todo when saving given title has been edited', function () {
         component.render($scope);
         component.startEditing();
         component.setTitle('edited todo');
@@ -42,5 +42,13 @@ describe('todo-item component', function () {
             title: 'edited todo'
         };
         expect($scope.onItemTitleChanged.withArgs(expected).calledOnce).to.be.true;
+    });
+
+    it('should not change Todo when cancelling given title has been edited', function () {
+        component.render($scope);
+        component.startEditing();
+        component.setTitle('edited todo');
+        component.cancelEditing();
+        expect($scope.onItemTitleChanged.notCalled).to.be.true;
     });
 });
