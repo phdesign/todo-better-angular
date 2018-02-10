@@ -5,7 +5,7 @@ module.exports = {
     },
     "env": {
         "browser": true,
-        "commonjs": true,
+        "commonjs": true
     },
     "rules": {
         "indent": ["error", 4],
