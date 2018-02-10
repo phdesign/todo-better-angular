@@ -1,4 +1,4 @@
-# //TODO: A better architecture for Angular 1
+# //TODO: A better architecture for Angular 1 [![Build Status](https://travis-ci.org/phdesign/todo-better-angular.svg?branch=master)](https://travis-ci.org/phdesign/todo-better-angular)
 
 This is a reference architecture for Angular 1 projects, borrowing concepts from Angular 2, React and Redux, including 
 organising by modules, using one-way binding and callbacks to demystify data flow, identifying stateless components
@@ -25,3 +25,17 @@ npm start -- --open
 
 Ideally we'd use ES6 (via Babel) or TypeScript here, but to related to the widest possible audience I've kept the 
 implementation to ES5 JavaScript.
+
+## Tests
+
+To run
+```
+npm test
+```
+
+To debug, first set some `debugger;` breakpoints in your code
+```
+npm run test:debug
+```
+Once the terminal is paused, open `chrome://inspect` in Google Chrome, click the 'Open dedicated DevTools for Node' link
+and click continue in the debugging tools. 
