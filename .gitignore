@@ -13,3 +13,4 @@ node_modules
 # Project artifacts
 todos.min.js
 npm-debug.log
+yarn-error.log
