@@ -1,4 +1,4 @@
-# //TODO: A better architecture for Angular 1
+# //TODO: A better architecture for Angular 1 [![Build Status](https://travis-ci.org/phdesign/todo-better-angular.svg?branch=master)](https://travis-ci.org/phdesign/todo-better-angular)
 
 This is a reference architecture for Angular 1 projects, borrowing concepts from Angular 2, React and Redux, including 
 organising by modules, using one-way binding and callbacks to demystify data flow, identifying stateless components
