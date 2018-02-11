@@ -3,5 +3,5 @@ export function collapseWhitespace(text) {
 }
 
 export function find(el, selector) {
-    return angular.element(el[0].querySelector(selector));
+    return angular.element(el[0].querySelectorAll(selector));
 }

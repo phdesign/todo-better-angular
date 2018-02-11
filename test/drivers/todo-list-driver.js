@@ -15,7 +15,7 @@ TodoListDriver.prototype = {
     },
 
     countTodos: function() {
-        return this.element.find('li').length;
+        return find(this.element, '.' + styles.todoList + ' li').length;
     },
 
     clickToggleAll: function() {
@@ -24,6 +24,12 @@ TodoListDriver.prototype = {
 
     isToggleAllChecked: function() {
         return find(this.element, '.' + styles.toggleAll).prop('checked');
+    },
+
+    changeFilter: function(val) {
+        var scope = this.element.children().scope();
+        scope.$ctrl.changeFilter(val);
+        scope.$apply();
     }
 };
 

@@ -3,8 +3,9 @@
 
   <section class="{{ $ctrl.styles.main }}" ng-if="$ctrl.getTodos().length">
     <input class="{{ $ctrl.styles.toggleAll }}" type="checkbox" ng-checked="$ctrl.store.areAllCompleted()" ng-click="$ctrl.store.toggleAllCompleted()">
-    <ul class="{{ $ctrl.styles.todoList }}" ng-repeat="todo in $ctrl.getTodos()">
+    <ul class="{{ $ctrl.styles.todoList }}">
       <todo-item 
+        ng-repeat="todo in $ctrl.getTodos()"
         todo="todo"
         on-item-completed="$ctrl.store.toggleCompletion"
         on-item-removed="$ctrl.store.remove"
